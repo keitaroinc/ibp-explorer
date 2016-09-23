@@ -409,6 +409,9 @@ class ProfilePage extends Backbone.View {
       }
     }
     const _viewPast = this.viewPast
+    if (!_viewPast) {
+      $('#profile-mode').removeClass('profile-mode-expanded')
+    }
     this.viewPast = !$('#profile-toggle').hasClass('active')
     const animate = !(_viewPast === this.viewPast)
     // Populate the DOM
@@ -462,7 +465,7 @@ class ProfilePage extends Backbone.View {
     if (target.id === 'print-answered') {
       $('.details').html(template_profile_details_future_print({data: detailsData, year: 2017}))
       if (window.location.toString().split('?')[1]) {
-        $('#country-header').text(`${printHeader}: MODIFIED ${this.year} RESULTS`)
+        $('#country-header').text(`${printHeader}: MODIFIED ${parseInt(this.year) + 2} RESULTS`)
       } else {
         $('#country-header').text(printHeader + ': ACTUAL RESULTS')
       }
